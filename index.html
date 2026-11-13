@@ -1,0 +1,344 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Michael Nyandigisi | Site Reliability Engineer</title>
+<meta name="description" content="Michael Nyandigisi: Senior Operations Engineer working towards Site Reliability Engineering, cloud and containers.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#fff;--fg:#0a1633;--mute:#5b6784;--line:#e3e8f2;--card:#f5f7fc;--acc:#0a1633;--glow:10,22,51}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--fg);font:15.5px/1.75 "JetBrains Mono",ui-monospace,"Cascadia Code",Consolas,monospace;-webkit-font-smoothing:antialiased;transition:color .35s}
+.mono,.btn,button{font-family:"JetBrains Mono",ui-monospace,"Cascadia Code",Consolas,monospace}
+.btn{letter-spacing:-.01em}
+a{color:inherit}
+.wrap{max-width:860px;margin:0 auto;padding:0 24px}
+#bar{position:fixed;top:0;left:0;height:2px;width:0;background:var(--fg);z-index:30}
+#net{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:0}
+#glow{position:fixed;inset:0;pointer-events:none;z-index:0;background:radial-gradient(420px circle at var(--x,50%) var(--y,30%),rgba(var(--glow),.07),transparent 70%)}
+nav{position:fixed;top:0;left:0;right:0;z-index:20;padding:18px 0;background:color-mix(in srgb,var(--bg) 80%,transparent);backdrop-filter:blur(10px)}
+nav .wrap{display:flex;justify-content:space-between;align-items:center;font-size:14px}
+nav .links{display:flex;gap:22px;color:var(--mute)}
+nav .links a{text-decoration:none;transition:color .2s}nav .links a:hover{color:var(--fg)}
+.logo{font-weight:600;text-decoration:none}
+@media(max-width:640px){nav .links a:nth-child(n+3){display:none}}
+main,section,footer{position:relative;z-index:1}
+.hero{min-height:100vh;display:flex;align-items:center;padding:110px 0 60px}
+.hero .wrap{display:grid;grid-template-columns:1fr 320px;gap:48px;align-items:center}
+@media(max-width:720px){.hero .wrap{grid-template-columns:1fr}.photo{order:-1;max-width:150px}}
+.tag{font-size:13px;color:var(--mute);margin-bottom:22px;display:flex;align-items:center;gap:8px}
+.dot{width:8px;height:8px;border-radius:50%;background:#22c55e;box-shadow:0 0 0 0 rgba(34,197,94,.6);animation:pl 2s infinite}
+@keyframes pl{70%{box-shadow:0 0 0 9px rgba(34,197,94,0)}100%{box-shadow:0 0 0 0 rgba(34,197,94,0)}}
+h1{font-size:clamp(34px,6vw,58px);line-height:1.1;letter-spacing:-.05em;font-weight:700}
+h1 span{display:inline-block;opacity:0;transform:translateY(24px);animation:up .8s cubic-bezier(.2,.7,.2,1) forwards}
+@keyframes up{to{opacity:1;transform:none}}
+.focus{margin:20px 0 18px;font-size:15px;color:var(--mute)}
+.focus b{color:var(--fg);font-weight:500}
+.cur{display:inline-block;width:7px;height:1em;background:var(--fg);vertical-align:-2px;animation:bl 1s steps(2) infinite}
+@keyframes bl{50%{opacity:0}}
+.lead{color:var(--mute);max-width:520px;margin-bottom:26px}
+.cta{display:flex;gap:10px;flex-wrap:wrap}
+.btn{display:inline-block;padding:10px 20px;border-radius:999px;font-size:14px;font-weight:500;border:1px solid var(--line);text-decoration:none;color:var(--fg);background:transparent;cursor:pointer;transition:.2s;font-family:inherit}
+.btn.p{background:var(--fg);color:var(--bg);border-color:var(--fg)}
+.btn:hover{transform:translateY(-2px)}
+.hero .wrap>div{min-width:0}
+.photo{perspective:700px}
+.photo img{width:100%;height:auto;display:block;mix-blend-mode:multiply;filter:brightness(1.06) contrast(1.1);transition:transform .4s cubic-bezier(.2,.7,.2,1)}
+.photo img.ink{mix-blend-mode:normal;filter:none}
+.photo:hover img{transform:scale(1.025)}
+.pods{margin-top:34px;border:1px solid var(--line);border-radius:12px;background:var(--card);padding:14px 18px;font-size:12.5px;max-width:520px;overflow-x:auto}
+.pods table{border-collapse:collapse;width:100%;white-space:nowrap}
+.pods td,.pods th{padding:3px 14px 3px 0;text-align:left;font-weight:400}
+.pods th{color:var(--mute)}
+.ok{color:#16a34a}.wait{color:#d97706}
+.spin{display:inline-block;animation:sp 1.2s linear infinite}@keyframes sp{to{transform:rotate(360deg)}}
+.pods .k{color:var(--mute);margin-bottom:6px}
+section{padding:90px 0}
+.eyebrow{font-size:13px;color:var(--mute);margin-bottom:12px}
+h2{font-size:clamp(24px,3.6vw,32px);letter-spacing:-.04em;line-height:1.15;margin-bottom:16px}
+p.sub{color:var(--mute);max-width:600px}
+.rv{opacity:0;transform:translateY(22px);transition:opacity .7s,transform .7s}.rv.in{opacity:1;transform:none}
+.cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin-top:34px}
+.card{border:1px solid var(--line);background:var(--card);border-radius:14px;padding:20px;transition:.25s}
+.card:hover{transform:translateY(-4px);border-color:var(--fg)}
+.card h3{font-size:16px;margin-bottom:6px;overflow-wrap:anywhere}.card p{color:var(--mute);font-size:14px}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+.chips span{font-size:12px;border:1px solid var(--line);border-radius:6px;padding:1px 8px;color:var(--mute)}
+.tl{margin-top:36px;border-top:1px solid var(--line)}
+.job{border-bottom:1px solid var(--line)}
+.jh{display:grid;grid-template-columns:60px 1fr;gap:18px;align-items:center;padding:18px 0}
+.job button{all:unset;box-sizing:border-box;width:100%;display:grid;grid-template-columns:1fr auto;gap:16px;align-items:center;cursor:pointer}
+.job button:focus-visible{outline:2px solid var(--fg);outline-offset:4px}
+.lg{width:60px;height:60px;border-radius:14px;border:1px solid var(--line);background:#fff;display:grid;place-items:center;font-weight:700;font-size:16px;overflow:hidden;color:#0a1633;box-shadow:0 1px 2px rgba(10,22,51,.06);transition:transform .25s,box-shadow .25s}
+a.lg:hover,a.lg:focus-visible{transform:translateY(-3px) scale(1.04);box-shadow:0 10px 24px -8px rgba(var(--glow),.5)}
+.lg img{width:100%;height:100%;object-fit:contain;padding:11px}
+.lg span{display:none}.lg.nologo span{display:block}
+.lg.wide img{padding:8px 6px}
+.lg.sm{width:52px;height:52px;border-radius:12px;font-size:13px}
+.lg.sm img{padding:5px}
+.fork{margin:0 0 22px 29px;padding-left:26px;border-left:2px solid var(--line)}
+.forkh{position:relative;display:flex;gap:14px;align-items:center;padding:4px 0 12px}
+.forkh:before{content:"";position:absolute;left:-26px;top:30px;width:20px;border-top:2px solid var(--line)}
+.forkh b{display:block;font-weight:600;line-height:1.3}
+.forkh .o{color:var(--mute);font-size:13px}
+.fork ul{padding:0 0 0 56px}
+.job h3{font-size:17px}.job .o{color:var(--mute);font-size:14px}
+.job .d{color:var(--mute);font-size:13px;text-align:right}
+.job .pm{margin-left:10px;transition:transform .3s}
+.job.open .pm{transform:rotate(45deg)}
+.job .body{display:grid;grid-template-rows:0fr;transition:grid-template-rows .4s}
+.job.open .body{grid-template-rows:1fr}
+.job .body>div{overflow:hidden}
+.job ul{padding:0 0 22px 78px;color:var(--mute);font-size:15px}
+.job li{margin-bottom:6px}
+@media(max-width:560px){.job button{grid-template-columns:1fr}.job .d{text-align:left}.job ul{padding-left:20px}.jh{grid-template-columns:48px 1fr}.lg{width:48px;height:48px}.lg.sm{width:38px;height:38px}.fork{margin-left:23px;padding-left:18px}.forkh:before{left:-18px;width:14px}.fork ul{padding-left:18px}}
+.chips .tool{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;border:1px solid var(--line);border-radius:8px;padding:3px 10px;color:var(--fg)}
+.marq .tool{display:inline-flex;align-items:center;gap:8px}
+.ic{width:15px;height:15px;display:inline-block;background:currentColor;-webkit-mask:var(--u) center/contain no-repeat;mask:var(--u) center/contain no-repeat}
+.marq .ic{width:18px;height:18px}
+.marq{overflow:hidden;margin-top:30px;mask:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent)}
+.marq div{display:flex;gap:34px;width:max-content;animation:mq 28s linear infinite;color:var(--mute);font-size:14px}
+@keyframes mq{to{transform:translateX(-50%)}}
+.proj{display:block;text-decoration:none}
+.proj .t{font-size:12px;color:var(--mute)}
+.arrow{float:right;transition:transform .2s}.proj:hover .arrow{transform:translate(3px,-3px)}
+.certs{margin-top:30px;display:grid;gap:0;border-top:1px solid var(--line)}
+.certs div{display:flex;justify-content:space-between;gap:12px;padding:14px 0;border-bottom:1px solid var(--line);font-size:15px}
+.certs span{color:var(--mute);font-size:13px}
+.big{font-size:clamp(26px,5vw,44px);letter-spacing:-.05em;font-weight:700;line-height:1.1;margin:14px 0 26px}
+.rows{display:flex;gap:28px;flex-wrap:wrap;margin-top:34px;font-size:14px;color:var(--mute)}
+.rows b{display:block;color:var(--fg);font-weight:500}
+footer{padding:36px 0 50px;font-size:13px;color:var(--mute)}
+footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
+@media(prefers-reduced-motion:reduce){.rv{opacity:1;transform:none}h1 span{opacity:1;transform:none;animation:none}.marq div,.dot,.cur,.spin{animation:none}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<div id="bar"></div><canvas id="net" aria-hidden="true"></canvas><div id="glow"></div>
+<nav><div class="wrap">
+  <a class="logo mono" href="#top">mn<span style="opacity:.5">/</span>sre</a>
+  <div class="links"><a href="#about">About</a><a href="#experience">Experience</a><a href="#stack">Stack</a><a href="#projects">Projects</a><a href="#contact">Contact</a></div>
+</div></nav>
+
+<main id="top" class="hero"><div class="wrap">
+  <div>
+    <p class="tag mono"><i class="dot"></i> Open to SRE &amp; platform roles</p>
+    <h1><span style="animation-delay:.1s">Michael</span><br><span style="animation-delay:.25s">Nyandigisi</span></h1>
+    <p class="focus mono">&gt; <b id="typed"></b><span class="cur"></span></p>
+    <p class="lead">Senior Operations Engineer keeping production healthy for a regulated FinTech platform, and working towards a career in Site Reliability Engineering, cloud and containers.</p>
+    <div class="cta"><a class="btn p" href="#experience">See my work</a><a class="btn" href="#contact">Get in touch</a></div>
+    <div class="pods mono" aria-label="Skill status shown as kubectl output">
+      <div class="k">$ kubectl get skills</div>
+      <table>
+        <tr><th>NAME</th><th>STATUS</th><th>AGE</th></tr>
+        <tr><td>monitoring</td><td class="ok">Running</td><td>4y</td></tr>
+        <tr><td>health-checks</td><td class="ok">Running</td><td>1y</td></tr>
+        <tr><td>docker</td><td class="ok">Running</td><td>1y</td></tr>
+        <tr><td>kubernetes</td><td class="wait"><i class="spin">◐</i> ContainerCreating</td><td>now</td></tr>
+      </table>
+    </div>
+  </div>
+  <div class="photo"><img src="portrait.webp" alt="Dotted black and white portrait of Michael Nyandigisi" width="1060" height="1500" fetchpriority="high"></div>
+</div></main>
+
+<section id="about"><div class="wrap">
+  <p class="eyebrow mono rv">01 / about</p>
+  <h2 class="rv">Operations first. Reliability always.</h2>
+  <p class="sub rv">I have four-plus years across production operations, enterprise IT and regulated financial services. Day to day I run health checks, investigate failures, recover processes, handle database maintenance and clear-downs, and keep incident and change tickets moving. I also write Python and shell automation, and I'm building my Docker and Kubernetes skills towards SRE.</p>
+  <div class="cols">
+    <div class="card rv"><h3>Observe</h3><p>Monitoring, health checks and log analysis catch problems before users do.</p></div>
+    <div class="card rv"><h3>Recover</h3><p>Follow the runbook, restore service, verify it stays up, then escalate with clean evidence.</p></div>
+    <div class="card rv"><h3>Automate</h3><p>Anything done twice becomes a script. One reporting workflow went from 45 minutes to 15.</p></div>
+  </div>
+</div></section>
+
+<section id="experience"><div class="wrap">
+  <p class="eyebrow mono rv">02 / experience</p>
+  <h2 class="rv">Where I've worked.</h2>
+  <p class="sub rv">Click a role to expand it.</p>
+  <div class="tl rv" id="jobs"></div>
+</div></section>
+
+<section id="stack"><div class="wrap">
+  <p class="eyebrow mono rv">03 / stack</p>
+  <h2 class="rv">Tools of the trade.</h2>
+  <div class="cols" id="stackgrid"></div>
+  <div class="marq"><div id="marq" class="mono"></div></div>
+</div></section>
+
+<section id="projects"><div class="wrap">
+  <p class="eyebrow mono rv">04 / projects</p>
+  <h2 class="rv">Things I've built.</h2>
+  <p class="sub rv">Small projects while learning Python. More coming as I go deeper into infrastructure.</p>
+  <div class="cols" id="projs"></div>
+</div></section>
+
+<section id="creds"><div class="wrap">
+  <p class="eyebrow mono rv">05 / credentials</p>
+  <h2 class="rv">Education &amp; certifications.</h2>
+  <div class="certs rv" id="certs"></div>
+</div></section>
+
+<section id="contact"><div class="wrap">
+  <p class="eyebrow mono rv">06 / contact</p>
+  <p class="big rv">Let's keep things running.</p>
+  <p class="sub rv">Hiring for an SRE, platform or operations role? Or just want to talk about Arsenal? My inbox is open.</p>
+  <div class="cta rv" style="margin-top:26px"><button class="btn p" id="mail" type="button">Send me an email</button></div>
+  <div class="rows rv" id="crow"></div>
+</div></section>
+<footer><div class="wrap"><span>© <span id="yr"></span> Michael Nyandigisi</span><span class="mono">uptime 99.9% · <a href="https://www.arsenal.com" target="_blank" rel="noopener" style="text-decoration:underline;text-underline-offset:3px">COYG ⚽</a></span></div></footer>
+
+<script>
+// ===== Content =====
+const D={
+ typed:["Site Reliability Engineering","Kubernetes & Docker","Cloud infrastructure","Monitoring & incident response"],
+ jobs:[
+  {m:"P",site:"https://www.prodapt.com",key:"prodapt",h:"Senior Operations Engineer",o:"Prodapt",d:"Jun 2026 – Present",open:1,
+   fork:{m:"M",key:"mpesa",o:"M-Pesa Africa",role:"Client engagement · L1 Application Operations Support"},b:[
+   "L1 application operations for a KYC and AML platform across multiple African markets: production monitoring, health checks and failed-run investigation.",
+   "Monitor ETL and iETL processing, verify file receipt, and spot missing files, failures and exceptions.",
+   "Linux operational checks, log review, established recovery procedures and monitoring of restarted processes.",
+   "Approved Oracle SQL activity, transaction clear-downs and routine application administration in OAT and production.",
+   "Run BMC Helix incident and change queues through closure, escalating to L2 and working with Problem Management on recurring issues.",
+   "Built an AI-assisted health-check reporting workflow with a verification step, cutting report prep from about 45 to 15 minutes."]},
+  {m:"KR",site:"https://www.karenroses.com",fav:"karenroses.com",h:"IT Officer",o:"Karen Roses Ltd",d:"May 2025 – Jun 2026",b:[
+   "Built and ran a production Python/Flask eTIMS bridge linking an Epson scanner, KRA eTIMS and ERPNext, deployed as a Windows Service with NSSM.",
+   "Supported 200+ users across three sites and administered Google Workspace, MFA and IAM.",
+   "Liaised between users and developers through a company-wide ERP migration; wrote SOPs and trained 100+ staff."]},
+  {m:"CS",site:"",dom:"",h:"Independent Study, Cybersecurity",o:"Self-directed",d:"Jun 2024 – Apr 2025",b:["Earned Cisco Ethical Hacker and Cisco Cyber Threat Management certifications."]},
+  {m:"DTB",site:"https://www.dtbafrica.com",key:"dtb",h:"IT Intern, Rotational Programme",o:"Diamond Trust Bank Kenya",d:"Apr 2024 – Jun 2024",b:["Supported access management, incident resolution and internal applications in a regulated banking environment.","Documented troubleshooting procedures for the IT knowledge base."]},
+  {m:"CR",site:"",dom:"",h:"IT Associate",o:"Conference Resources Consulting Ltd",d:"Sep 2022 – Nov 2023",b:["On-site technical support for live conferencing events, fixing hardware, network and AV issues under time pressure."]}],
+ stack:[
+  {h:"Operations & monitoring",p:"Production monitoring, health checks, incident triage and log analysis.",c:[["Linux","linux"],["Grafana","grafana"],["BMC Helix"],["Health checks"]]},
+  {h:"Containers & cloud",p:"Docker in daily use; Kubernetes and Azure in active study.",c:[["Docker","docker"],["Kubernetes","kubernetes"],["Azure","microsoftazure"]]},
+  {h:"Data",p:"Queries, maintenance and clear-downs across relational databases.",c:[["Oracle SQL","oracle"],["SQL"],["PostgreSQL","postgresql"]]},
+  {h:"Automation",p:"Scripting that removes toil and makes recovery repeatable.",c:[["Python","python"],["Shell (Bash)","gnubash"]]}],
+ marquee:[["Linux","linux"],["Docker","docker"],["Kubernetes","kubernetes"],["Grafana","grafana"],["Python","python"],["Bash","gnubash"],["PostgreSQL","postgresql"],["Oracle","oracle"],["Azure","microsoftazure"]],
+ projs:[
+  {t:"Python · AI",h:"ai-ats-scanner",p:"AI-powered ATS scanner and resume matcher.",u:"https://github.com/michaelnyandigisi/ai-ats-scanner"},
+  {t:"Python · CLI",h:"simple_atm",p:"A simple console ATM program.",u:"https://github.com/michaelnyandigisi/simple_atm"},
+  {t:"Python · CLI",h:"console_shipping_calculator",p:"Prompts for weight and shipping method, then outputs total shipping cost.",u:"https://github.com/michaelnyandigisi/console_shipping_calculator"},
+  {t:"Python · CLI",h:"simple-python-calculator",p:"A simple calculator console program.",u:"https://github.com/michaelnyandigisi/simple-python-calculator"}],
+ certs:[
+  ["BSc Information Systems & Technology, USIU-Africa","Forensic IT & Cybersecurity"],
+  ["Google Cybersecurity Certificate","2026"],["Cisco Ethical Hacker","2024"],["Cisco Cyber Threat Management","2024"],
+  ["Microsoft Azure Developer Associate (AZ-204)","In progress"],["Microsoft Azure Fundamentals (AZ-900)","In progress"],["CompTIA Security+","In progress"],["ITIL 4 Foundation","In progress"]],
+ contact:[["GitHub","github.com/michaelnyandigisi","https://github.com/michaelnyandigisi"],["LinkedIn","in/michaelnyandigisi","https://www.linkedin.com/in/michaelnyandigisi/"],["Location","Nairobi, Kenya"]]
+};
+const $=s=>document.querySelector(s);
+const chips=a=>`<div class="chips">${a.map(x=>`<span class="mono">${x}</span>`).join("")}</div>`;
+const logoTile=j=>{
+  // Looks for logos/<key>.svg, then logos/<key>.png; if neither exists the crisp monogram shows instead of a blurry image.
+  const fb="if(!this.dataset.t){this.dataset.t=1;this.src='logos/"+j.key+".png'}else{this.parentNode.classList.add('nologo');this.remove()}";
+  const gone="this.parentNode.classList.add('nologo');this.remove()";
+  const img=j.fav?`<img src="https://www.google.com/s2/favicons?domain=${j.fav}&sz=128" alt="" onerror="${gone}">`:j.key?`<img src="logos/${j.key}.svg" alt="" onerror="${fb}">`:"";
+  const inner=`${img}<span class="mono">${j.m}</span>`;
+  const cls="lg"+(img?"":" nologo")+(j.sm?" sm":"")+(j.key==="prodapt"?" wide":"");
+  return j.site?`<a class="${cls}" href="${j.site}" target="_blank" rel="noopener" aria-label="${j.o} website" title="${j.o}">${inner}</a>`:`<div class="${cls}" aria-hidden="true">${inner}</div>`;
+};
+// A role with a `fork` renders like a folder tree: employer on top, client engagement as a child branch holding the bullets.
+const jobBody=j=>{
+  const ul=`<ul>${j.b.map(x=>`<li>${x}</li>`).join("")}</ul>`;
+  if(!j.fork)return ul;
+  const f={...j.fork,sm:1};
+  return `<div class="fork"><div class="forkh">${logoTile(f)}<div><b>${f.o}</b><span class="o">${f.role}</span></div></div>${ul}</div>`;
+};
+$("#jobs").innerHTML=D.jobs.map(j=>`<div class="job${j.open?" open":""}"><div class="jh">${logoTile(j)}<button aria-expanded="${!!j.open}"><span><h3>${j.h}</h3><span class="o">${j.o}</span></span><span class="d mono">${j.d}<span class="pm">+</span></span></button></div><div class="body"><div>${jobBody(j)}</div></div></div>`).join("");
+document.querySelectorAll(".job button").forEach(b=>b.onclick=()=>{const j=b.closest(".job");const o=j.classList.toggle("open");b.setAttribute("aria-expanded",o)});
+const IC="https://cdn.jsdelivr.net/npm/simple-icons@11.14.0/icons/";
+const tool=([n,i])=>`<span class="tool">${i?`<i class="ic" style="--u:url(${IC}${i}.svg)"></i>`:""}${n}</span>`;
+$("#stackgrid").innerHTML=D.stack.map(s=>`<div class="card rv"><h3>${s.h}</h3><p>${s.p}</p><div class="chips">${s.c.map(tool).join("")}</div></div>`).join("");
+$("#marq").innerHTML=[...D.marquee,...D.marquee].map(tool).join("");
+$("#projs").innerHTML=D.projs.map(p=>`<a class="card proj rv" href="${p.u}" target="_blank" rel="noopener"><span class="arrow">↗</span><div class="t mono">${p.t}</div><h3 class="mono" style="font-size:15px">${p.h}</h3><p>${p.p}</p></a>`).join("");
+$("#certs").innerHTML=D.certs.map(c=>`<div><b style="font-weight:500">${c[0]}</b><span class="mono">${c[1]}</span></div>`).join("");
+$("#crow").innerHTML=D.contact.map(c=>`<div><span class="mono" style="font-size:11px">${c[0].toUpperCase()}</span>${c[2]?`<a href="${c[2]}" target="_blank" rel="noopener"><b>${c[1]}</b></a>`:`<b>${c[1]}</b>`}</div>`).join("");
+$("#yr").textContent=new Date().getFullYear();
+// The address is never in the page text or an href; it is decoded only when the button is clicked.
+$("#mail").onclick=()=>{location.href="mailto:"+atob("bWljaGFlbGpueWFuZGlnaXNpQGdtYWlsLmNvbQ==")+"?subject="+encodeURIComponent("Hello Michael")};
+// typing
+let wi=0,ci=0,del=false;
+(function tick(){const w=D.typed[wi];ci+=del?-1:1;$("#typed").textContent=w.slice(0,ci);let t=del?30:70;
+ if(!del&&ci===w.length){del=true;t=1500}else if(del&&ci===0){del=false;wi=(wi+1)%D.typed.length;t=300}setTimeout(tick,t)})();
+// scroll: white -> midnight blue
+const A=(h)=>[1,3,5].map(i=>parseInt(h.slice(i,i+2),16));
+const mix=(a,b,t)=>"rgb("+A(a).map((v,i)=>Math.round(v+(A(b)[i]-v)*t)).join(",")+")";
+const root=document.documentElement.style;
+function paint(){
+  const max=document.documentElement.scrollHeight-innerHeight;const p=max>0?scrollY/max:0;
+  $("#bar").style.width=p*100+"%";
+  // background eases over a short stretch; text flips at the midpoint so contrast never collapses
+  const t=Math.min(1,Math.max(0,(p-.1)/.3));
+  const dk=t>.5;
+  root.setProperty("--bg",mix("#ffffff","#0a1633",t));
+  root.setProperty("--fg",dk?"#eaf0ff":"#0a1633");
+  root.setProperty("--mute",dk?"#a9b8dc":"#5b6784");
+  root.setProperty("--line",mix("#e3e8f2","#22335c",t));
+  root.setProperty("--card",mix("#f5f7fc","#101f45",t));
+  root.setProperty("--glow",dk?"120,160,255":"10,22,51");
+  window.__dark=dk;
+}
+addEventListener("scroll",paint,{passive:true});addEventListener("resize",paint);paint();
+// cursor glow + photo tilt
+addEventListener("pointermove",e=>{root.setProperty("--x",e.clientX+"px");root.setProperty("--y",e.clientY+"px")});
+// portrait: turn the white paper into real transparency (black ink with alpha) so the dots sit directly on the page background
+(function(){
+  const im=document.querySelector(".photo img");
+  function ink(){
+    try{
+      const c=document.createElement("canvas");c.width=im.naturalWidth;c.height=im.naturalHeight;
+      const x=c.getContext("2d",{willReadFrequently:true});x.drawImage(im,0,0);
+      const d=x.getImageData(0,0,c.width,c.height),p=d.data;
+      for(let i=0;i<p.length;i+=4){
+        const l=(0.299*p[i]+0.587*p[i+1]+0.114*p[i+2])/255;
+        p[i]=p[i+1]=p[i+2]=0;p[i+3]=Math.round(255*Math.min(1,Math.max(0,(0.97-l)/0.85)));
+      }
+      x.putImageData(d,0,0);
+      c.toBlob(b=>{if(!b)return;im.onload=()=>im.classList.add("ink");im.src=URL.createObjectURL(b)},"image/png");
+    }catch(e){/* keep the multiply-blend fallback */}
+  }
+  im.complete&&im.naturalWidth?ink():im.addEventListener("load",ink,{once:true});
+})();
+// tech background: drifting network of nodes; deeper nodes move faster as you scroll (parallax), and the cursor links to nearby nodes
+(function(){
+  const cv=$("#net"),c=cv.getContext("2d"),still=matchMedia("(prefers-reduced-motion: reduce)").matches;
+  let W,H,P=[],mx=-999,my=-999;
+  function init(){
+    const dpr=Math.min(devicePixelRatio||1,2);W=innerWidth;H=innerHeight;cv.width=W*dpr;cv.height=H*dpr;c.setTransform(dpr,0,0,dpr,0,0);
+    const n=Math.min(90,Math.round(W*H/15000));
+    P=Array.from({length:n},()=>({x:Math.random()*W,y:Math.random()*H,z:.25+Math.random()*.75,vx:(Math.random()-.5)*.25,vy:(Math.random()-.5)*.25}));
+  }
+  function frame(){
+    c.clearRect(0,0,W,H);
+    const dk=window.__dark,rgb=dk?"150,180,255":"10,22,51",sy=scrollY;
+    const pts=P.map(p=>{
+      if(!still){p.x+=p.vx;p.y+=p.vy}
+      p.x=(p.x+W)%W;p.y=(p.y+H)%H;
+      const y=((p.y-sy*p.z*.45)%H+H)%H;   // scroll parallax
+      return [p.x,y,p.z];
+    });
+    for(let i=0;i<pts.length;i++){
+      const a=pts[i];
+      for(let j=i+1;j<pts.length;j++){
+        const b=pts[j],d=Math.hypot(a[0]-b[0],a[1]-b[1]);
+        if(d<130){c.strokeStyle=`rgba(${rgb},${(1-d/130)*.16*Math.min(a[2],b[2])+.02})`;c.lineWidth=1;c.beginPath();c.moveTo(a[0],a[1]);c.lineTo(b[0],b[1]);c.stroke()}
+      }
+      const dm=Math.hypot(a[0]-mx,a[1]-my);
+      if(dm<170){c.strokeStyle=`rgba(${rgb},${(1-dm/170)*.35})`;c.beginPath();c.moveTo(a[0],a[1]);c.lineTo(mx,my);c.stroke()}
+      c.fillStyle=`rgba(${rgb},${.18+a[2]*.3})`;c.beginPath();c.arc(a[0],a[1],1+a[2]*1.4,0,6.2832);c.fill();
+    }
+    if(!still)requestAnimationFrame(frame);
+  }
+  addEventListener("pointermove",e=>{mx=e.clientX;my=e.clientY});
+  addEventListener("resize",()=>{init();if(still)frame()});
+  if(still)addEventListener("scroll",frame,{passive:true});
+  init();frame();
+})();
+// reveal
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target)}}),{threshold:.12});
+document.querySelectorAll(".rv").forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
