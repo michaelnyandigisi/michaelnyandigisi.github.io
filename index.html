@@ -1,4 +1,4 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -210,7 +210,7 @@ const D={
    "Liaised between users and developers through a company-wide ERP migration; wrote SOPs and trained 100+ staff."]},
   {m:"CS",site:"",dom:"",h:"Independent Study, Cybersecurity",o:"Self-directed",d:"Jun 2024 – Apr 2025",b:["Earned Cisco Ethical Hacker and Cisco Cyber Threat Management certifications."]},
   {m:"DTB",site:"https://www.dtbafrica.com",key:"dtb",h:"IT Intern, Rotational Programme",o:"Diamond Trust Bank Kenya",d:"Apr 2024 – Jun 2024",b:["Supported access management, incident resolution and internal applications in a regulated banking environment.","Documented troubleshooting procedures for the IT knowledge base."]},
-  {m:"CR",site:"",dom:"",h:"IT Associate",o:"Conference Resources Consulting Ltd",d:"Sep 2022 – Nov 2023",b:["On-site technical support for live conferencing events, fixing hardware, network and AV issues under time pressure."]}],
+  {m:"CR",file:"logos/conference-resources.jpeg",site:"",dom:"",h:"IT Associate",o:"Conference Resources Consulting Ltd",d:"Sep 2022 – Nov 2023",b:["On-site technical support for live conferencing events, fixing hardware, network and AV issues under time pressure."]}],
  stack:[
   {h:"Operations & monitoring",p:"Production monitoring, health checks, incident triage and log analysis.",c:[["Linux","linux"],["Grafana","grafana"],["BMC Helix"],["Health checks"]]},
   {h:"Containers & cloud",p:"Docker in daily use; Kubernetes and Azure in active study.",c:[["Docker","docker"],["Kubernetes","kubernetes"],["Azure","microsoftazure"]]},
@@ -234,7 +234,7 @@ const logoTile=j=>{
   // Looks for logos/<key>.svg, then logos/<key>.png; if neither exists the crisp monogram shows instead of a blurry image.
   const fb="if(!this.dataset.t){this.dataset.t=1;this.src='logos/"+j.key+".png'}else{this.parentNode.classList.add('nologo');this.remove()}";
   const gone="this.parentNode.classList.add('nologo');this.remove()";
-  const img=j.fav?`<img src="https://www.google.com/s2/favicons?domain=${j.fav}&sz=128" alt="" onerror="${gone}">`:j.key?`<img src="logos/${j.key}.svg" alt="" onerror="${fb}">`:"";
+  const img=j.file?`<img src="${j.file}" alt="${j.o} logo" onerror="${gone}">`:j.fav?`<img src="https://www.google.com/s2/favicons?domain=${j.fav}&sz=128" alt="" onerror="${gone}">`:j.key?`<img src="logos/${j.key}.svg" alt="" onerror="${fb}">`:"";
   const inner=`${img}<span class="mono">${j.m}</span>`;
   const cls="lg"+(img?"":" nologo")+(j.sm?" sm":"")+(j.key==="prodapt"?" wide":"");
   return j.site?`<a class="${cls}" href="${j.site}" target="_blank" rel="noopener" aria-label="${j.o} website" title="${j.o}">${inner}</a>`:`<div class="${cls}" aria-hidden="true">${inner}</div>`;
