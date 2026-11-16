@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -180,7 +181,7 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
 <section id="projects"><div class="wrap">
   <p class="eyebrow mono rv">04 / projects</p>
   <h2 class="rv">Things I've built.</h2>
-  <p class="sub rv">Small projects while learning Python. More coming as I go deeper into infrastructure.</p>
+  <p class="sub rv">Hands-on projects in cloud infrastructure, automation, monitoring and application development.</p>
   <div class="cols" id="projs"></div>
 </div></section>
 
@@ -223,9 +224,15 @@ const D={
   {h:"Operations & monitoring",p:"Production monitoring, health checks, incident triage and log analysis.",c:[["Linux","linux"],["Grafana","grafana"],["BMC Helix"],["Health checks"]]},
   {h:"Containers & cloud",p:"Docker in daily use; Kubernetes and Azure in active study.",c:[["Docker","docker"],["Kubernetes","kubernetes"],["Azure","microsoftazure"]]},
   {h:"Data",p:"Queries, maintenance and clear-downs across relational databases.",c:[["Oracle SQL","oracle"],["SQL"],["PostgreSQL","postgresql"]]},
-  {h:"Automation",p:"Scripting that removes toil and makes recovery repeatable.",c:[["Python","python"],["Shell (Bash)","gnubash"]]}],
- marquee:[["Linux","linux"],["Docker","docker"],["Kubernetes","kubernetes"],["Grafana","grafana"],["Python","python"],["Bash","gnubash"],["PostgreSQL","postgresql"],["Oracle","oracle"],["Azure","microsoftazure"]],
+  {h:"Automation & CI/CD",p:"Scripting, pipeline automation and repeatable deployments.",c:[["Python","python"],["Shell (Bash)","gnubash"],["Jenkins","jenkins"]]}],
+ marquee:[["Linux","linux"],["Docker","docker"],["Kubernetes","kubernetes"],["Grafana","grafana"],["Python","python"],["Bash","gnubash"],["PostgreSQL","postgresql"],["Oracle","oracle"],["Azure","microsoftazure"],["Jenkins","jenkins"]],
  projs:[
+  {
+   t:"Azure · Python · DevOps",
+   h:"net-telemetry-pipeline",
+   p:"An Azure-hosted network telemetry platform that runs automated speed tests every 10 minutes. Collects download speed, upload speed, ping and jitter using Python and Ookla Speedtest CLI, stores results in PostgreSQL, visualizes performance in Grafana, and automates deployment through Jenkins CI/CD.",
+   u:"https://github.com/michaelnyandigisi/net-telemetry-pipeline"
+  },
   {t:"Python · AI",h:"ai-ats-scanner",p:"AI-powered ATS scanner and resume matcher.",u:"https://github.com/michaelnyandigisi/ai-ats-scanner"},
   {t:"Python · CLI",h:"simple_atm",p:"A simple console ATM program.",u:"https://github.com/michaelnyandigisi/simple_atm"},
   {t:"Python · CLI",h:"console_shipping_calculator",p:"Prompts for weight and shipping method, then outputs total shipping cost.",u:"https://github.com/michaelnyandigisi/console_shipping_calculator"},
